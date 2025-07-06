@@ -57,6 +57,12 @@ TinyNetLab/
 python tinynet.py
 ```
 
+## 🖱 Interactive moons explorer
+
+To experiment with the dataset itself, run `python moons_gui.py`. A window will
+appear with sliders to control the sample size and noise level so you can see how
+these parameters affect the moons distribution in real time.
+
 Or import parts of the code into your own experiments!
 
 ## 📌 License

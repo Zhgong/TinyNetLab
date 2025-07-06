@@ -57,6 +57,10 @@ python tinynet.py
 
 或者将代码中的部分模块引入到你自己的实验中！
 
+## 🖱 交互式 Moons 数据查看器
+
+运行 `python moons_gui.py` 即可打开一个窗口，通过滑块调整样本数和噪声水平，实时观察数据分布的变化。
+
 ## 📌 许可证
 
 MIT License.
