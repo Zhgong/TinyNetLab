@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 from sklearn.datasets import make_moons
 
+# Deprecated: use moons_streamlit.py for a Streamlit interface
 # Initial parameters
 INITIAL_SAMPLES = 800
 INITIAL_NOISE = 0.2
