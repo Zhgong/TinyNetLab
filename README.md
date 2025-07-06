@@ -31,6 +31,14 @@ You’ll see it all in action by training on a simple **2D moons dataset** (a cl
 - Decision boundary visualization
 - Clear, well-commented code
 
+## Network Topology
+
+| Layer  | Neurons | Activation |
+| ------ | ------- | ---------- |
+| Input  | 2       | —          |
+| Hidden | 4       | ReLU       |
+| Output | 1       | Sigmoid    |
+
 ## 🎨 Example decision boundary
 
 _(You can insert a generated plot here, e.g., after training 2000 epochs)_
@@ -39,14 +47,14 @@ _(You can insert a generated plot here, e.g., after training 2000 epochs)_
 ## 🔧 Requirements
 
 ```bash
-pip install numpy matplotlib scikit-learn streamlit
+ pip install numpy matplotlib scikit-learn streamlit
 ```
 
 ## 📂 Project structure
 
 ```
-TinyNetLab/
- ├── tinynet.py        # Main code: network definition, train loop, plotting
+ TinyNetLab/
+ ├── tinynet.py        # Main code: network definition, Streamlit UI
  ├── README.md         # This file
  └── boundary_example.png # Example plot (optional)
 ```
@@ -54,7 +62,7 @@ TinyNetLab/
 ## 🌱 Get started
 
 ```bash
-python tinynet.py
+streamlit run tinynet.py
 ```
 
 ## 🌐 Streamlit app
@@ -62,11 +70,11 @@ python tinynet.py
 Prefer a modern web interface? Launch the Streamlit version:
 
 ```bash
-streamlit run moons_app.py
+streamlit run moons_streamlit.py
 ```
 
-This app presents the same controls in the browser along with extra reading
-prompts to guide your exploration of the moons dataset.
+This app presents the same controls in the browser and includes a checkbox to
+show how logistic regression performs on the dataset.
 
 ## 📌 License
 
