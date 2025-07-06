@@ -64,6 +64,17 @@ Run `streamlit run moons_streamlit.py` to launch the web app. Move the sliders f
 The old Matplotlib GUI (`python moons_gui.py`) is still available but `moons_streamlit.py` is recommended.
 
 
+## 🌐 Streamlit app
+
+Prefer a modern web interface? Launch the Streamlit version:
+
+```bash
+streamlit run moons_app.py
+```
+
+This app presents the same controls in the browser along with extra reading
+prompts to guide your exploration of the moons dataset.
+
 ## 📌 License
 
 MIT License.
