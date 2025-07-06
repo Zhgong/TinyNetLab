@@ -3,12 +3,12 @@
     "configurations": [
         {
             "name": "Debug Streamlit",
-            "type": "debugpy",
+            "type": "python",
             "request": "launch",
             "module": "streamlit",
             "args": [
                 "run",
-                "moons_streamlit.py"
+                "${file}"
             ],
             "console": "integratedTerminal"
         }

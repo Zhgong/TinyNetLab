@@ -172,11 +172,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    if not getattr(st, "_is_running_with_streamlit", False):
-        from streamlit.web import cli as stcli
-        import sys
-
-        sys.argv = ["streamlit", "run", sys.argv[0]]
-        sys.exit(stcli.main())
-
     main()
