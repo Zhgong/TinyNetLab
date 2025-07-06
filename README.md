@@ -65,6 +65,17 @@ these parameters affect the moons distribution in real time.
 
 Or import parts of the code into your own experiments!
 
+## 🌐 Streamlit app
+
+Prefer a modern web interface? Launch the Streamlit version:
+
+```bash
+streamlit run moons_app.py
+```
+
+This app presents the same controls in the browser along with extra reading
+prompts to guide your exploration of the moons dataset.
+
 ## 📌 License
 
 MIT License.
