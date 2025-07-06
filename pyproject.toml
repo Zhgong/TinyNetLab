@@ -4,14 +4,17 @@ version = "0.1.0"
 description = "Small demo generating moons dataset"
 authors = [ { name = "TinyNetLab" } ]
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">3.11"
 dependencies = [
     "numpy",
     "matplotlib",
     "scikit-learn",
     "streamlit"
-]
+    ]
 
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.poetry]
+package-mode = false
