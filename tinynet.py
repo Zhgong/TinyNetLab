@@ -1,14 +1,16 @@
 """Tiny 2-4-1 neural network with Streamlit visualization."""
 
+from typing import Optional
 import numpy as np
 import pandas as pd
 import altair as alt
 import streamlit as st
 from sklearn.datasets import make_moons
+from streamlit.delta_generator import DeltaGenerator
 
 # Initialize random generator and network dimensions
 rng = np.random.default_rng(42)
-n_input, n_hidden, n_output = 2, 4, 1
+n_input, n_hidden, n_output = 2, 100, 1
 
 # Parameters will be initialized in ``init_params`` so that each training run
 # starts fresh.
@@ -87,10 +89,12 @@ def train(
     y: np.ndarray,
     epochs: int = 2000,
     lr: float = 0.1,
-    progress: "st.progress" = None,
+    progress: Optional[DeltaGenerator]  = None,
 ) -> float:
     """Train the network and optionally update a Streamlit progress bar."""
 
+    loss: float = float("nan")
+    
     for i in range(epochs):
         A2, cache = forward(X)
         loss = compute_loss(A2, y)
@@ -104,7 +108,7 @@ def train(
 
 # Visualization of decision boundary
 
-def decision_boundary_chart(X: np.ndarray, y: np.ndarray) -> alt.Chart:
+def decision_boundary_chart(X: np.ndarray, y: np.ndarray) -> alt.LayerChart:
     """Return an Altair chart visualizing the decision boundary."""
 
     x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
@@ -149,7 +153,7 @@ def main() -> None:
     """Streamlit UI for training and visualizing the tiny network."""
 
     st.set_page_config(page_title="TinyNet Trainer")
-    st.title("TinyNet 2-4-1")
+    st.title(f"TinyNet {n_input}-{n_hidden}-{n_output}")
     st.markdown(
         "Train a tiny neural network on the moons dataset and view the decision boundary."
     )
