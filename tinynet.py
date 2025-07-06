@@ -10,7 +10,7 @@ from streamlit.delta_generator import DeltaGenerator
 
 # Initialize random generator and network dimensions
 rng = np.random.default_rng(42)
-n_input, n_hidden, n_output = 2, 100, 1
+n_input, n_hidden, n_output = 2, 20, 1
 
 # Parameters will be initialized in ``init_params`` so that each training run
 # starts fresh.
@@ -103,6 +103,7 @@ def train(
 
         if progress and i % max(1, epochs // 100) == 0:
             progress.progress((i + 1) / epochs)
+            print(f"Epoch {i + 1}/{epochs}, Loss: {loss:.4f}")
 
     return float(loss)
 
@@ -115,7 +116,7 @@ def decision_boundary_chart(X: np.ndarray, y: np.ndarray) -> alt.LayerChart:
     y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
 
     xx, yy = np.meshgrid(
-        np.linspace(x_min, x_max, 100), np.linspace(y_min, y_max, 100)
+        np.linspace(x_min, x_max, 300), np.linspace(y_min, y_max, 300)
     )
     grid = np.c_[xx.ravel(), yy.ravel()]
     probs, _ = forward(grid)
@@ -125,7 +126,7 @@ def decision_boundary_chart(X: np.ndarray, y: np.ndarray) -> alt.LayerChart:
 
     boundary = (
         alt.Chart(df_grid)
-        .mark_rect()
+        .mark_circle(size=10, opacity=0.5)
         .encode(
             x=alt.X("x1:Q", bin=False),
             y=alt.Y("x2:Q", bin=False),
@@ -160,7 +161,7 @@ def main() -> None:
 
     samples = st.slider("Samples", 100, 1000, 800, step=50)
     noise = st.slider("Noise", 0.0, 0.5, 0.2, step=0.01)
-    epochs = st.slider("Epochs", 500, 5000, 2000, step=100)
+    epochs = st.slider("Epochs", 5000, 100000, 20000, step=100)
     lr = st.slider("Learning rate", 0.01, 1.0, 0.1, step=0.01)
 
     if st.button("Train"):
