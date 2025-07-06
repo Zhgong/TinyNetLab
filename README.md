@@ -39,7 +39,7 @@ You’ll see it all in action by training on a simple **2D moons dataset** (a cl
 ## 🔧 Requirements
 
 ```bash
-pip install numpy matplotlib scikit-learn
+pip install numpy matplotlib scikit-learn streamlit
 ```
 
 ## 📂 Project structure
@@ -59,11 +59,10 @@ python tinynet.py
 
 ## 🖱 Interactive moons explorer
 
-To experiment with the dataset itself, run `python moons_gui.py`. A window will
-appear with sliders to control the sample size and noise level so you can see how
-these parameters affect the moons distribution in real time.
+Run `streamlit run moons_streamlit.py` to launch the web app. Move the sliders for sample size and noise to see the moons dataset change.
 
-Or import parts of the code into your own experiments!
+The old Matplotlib GUI (`python moons_gui.py`) is still available but `moons_streamlit.py` is recommended.
+
 
 ## 📌 License
 
