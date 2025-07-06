@@ -9,8 +9,8 @@ dependencies = [
     "numpy",
     "matplotlib",
     "scikit-learn",
-    "streamlit (>=1.46.1,<2.0.0)"
-]
+    "streamlit"
+    ]
 
 [build-system]
 requires = ["setuptools", "wheel"]

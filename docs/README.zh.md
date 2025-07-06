@@ -61,6 +61,16 @@ python tinynet.py
 
 运行 `python moons_gui.py` 即可打开一个窗口，通过滑块调整样本数和噪声水平，实时观察数据分布的变化。
 
+## 🌐 Streamlit 应用
+
+如果希望在浏览器中体验更加现代的界面，可执行：
+
+```bash
+streamlit run moons_app.py
+```
+
+该版本在网页中提供相同的参数控制，并附带额外的思考题，帮助你更深入地理解 Moons 数据集。
+
 ## 📌 许可证
 
 MIT License.
