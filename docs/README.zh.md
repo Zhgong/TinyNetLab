@@ -29,6 +29,14 @@ TinyNetLab 是一个动手为主的教育项目，你将在没有任何框架的
 - 决策边界可视化
 - 结构清晰、注释充分
 
+## 网络拓扑
+
+| 层级 | 神经元数 | 激活函数 |
+| --- | --- | --- |
+| 输入 | 2 | — |
+| 隐藏 | 4 | ReLU |
+| 输出 | 1 | Sigmoid |
+
 ## 🎨 决策边界示例
 
 _(可在训练 2000 个 epoch 后插入生成的图)_  
@@ -43,8 +51,8 @@ pip install numpy matplotlib scikit-learn
 ## 📂 项目结构
 
 ```
-TinyNetLab/
- ├── tinynet.py        # 主脚本：网络定义、训练循环、绘图
+ TinyNetLab/
+ ├── tinynet.py        # 主脚本：网络定义、Streamlit 界面
  ├── README.md         # 英文版说明
  └── boundary_example.png # 示例图（可选）
 ```
@@ -52,7 +60,7 @@ TinyNetLab/
 ## 🌱 快速开始
 
 ```bash
-python tinynet.py
+streamlit run tinynet.py
 ```
 
 或者将代码中的部分模块引入到你自己的实验中！
@@ -62,10 +70,10 @@ python tinynet.py
 如果希望在浏览器中体验更加现代的界面，可执行：
 
 ```bash
-streamlit run moons_app.py
+streamlit run moons_streamlit.py
 ```
 
-该版本在网页中提供相同的参数控制，并附带额外的思考题，帮助你更深入地理解 Moons 数据集。
+该版本在网页中提供相同的参数控制，并有一个复选框可展示 Logistic Regression 的效果。
 
 ## 📌 许可证
 
