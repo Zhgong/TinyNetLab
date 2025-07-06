@@ -1,7 +1,10 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+import numpy as np
 from sklearn.datasets import make_moons
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import log_loss
 
 st.set_page_config(page_title="Moons Explorer")
 st.title("Moons 数据可视化")
@@ -30,7 +33,27 @@ chart = alt.Chart(df).mark_circle(size=60, opacity=1).encode(
     title='Moons 数据集'
 )
 
-st.altair_chart(chart, use_container_width=True)
+show_lr = st.checkbox("显示线性模型效果")
+
+if show_lr:
+    model = LogisticRegression(max_iter=200)
+    model.fit(X, y)
+
+    proba = model.predict_proba(X)[:, 1]
+    loss = log_loss(y, proba)
+
+    w1, w2 = model.coef_[0]
+    b = model.intercept_[0]
+    x_vals = np.array([df.x1.min(), df.x1.max()])
+    y_vals = -(w1 * x_vals + b) / w2
+    boundary_df = pd.DataFrame({'x1': x_vals, 'x2': y_vals})
+    line = alt.Chart(boundary_df).mark_line(color='black').encode(x='x1', y='x2')
+
+    st.altair_chart(chart + line, use_container_width=True)
+    st.write(f"Logistic Regression 损失: {loss:.4f}")
+    st.markdown("线性模型只能学习直线决策边界，因此无法正确分开弯曲的 moons 数据。")
+else:
+    st.altair_chart(chart, use_container_width=True)
 
 st.markdown(
 """
@@ -38,5 +61,7 @@ st.markdown(
 
 - 画出来的两条“月牙”为什么一条直线分不开？
 - 如果只有线性模型（如 logistic regression），损失大概会降到哪？也可以试试验证你的猜想。
+
+提示：线性模型只能画出直线决策边界，而 moons 数据集呈现弯曲月牙形状，因此线性模型无法获得很低的损失。
 """
 )
