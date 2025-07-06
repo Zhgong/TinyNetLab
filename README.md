@@ -17,23 +17,23 @@ You’ll see it all in action by training on a simple **2D moons dataset** (a cl
 
 ## 🧠 Why use TinyNetLab?
 
-* **Understand, don’t just use:** Go beyond black-box libraries — see the math at work.
-* **Minimal but meaningful:** A small network (2-4-1) that’s powerful enough to learn nonlinear boundaries.
-* **Visual + interactive:** Watch your neural net *draw* the boundary as it learns.
-* **Easy to hack:** Modify the number of neurons, activations, layers, learning rates — and instantly see what changes.
+- **Understand, don’t just use:** Go beyond black-box libraries — see the math at work.
+- **Minimal but meaningful:** A small network (2-4-1) that’s powerful enough to learn nonlinear boundaries.
+- **Visual + interactive:** Watch your neural net _draw_ the boundary as it learns.
+- **Easy to hack:** Modify the number of neurons, activations, layers, learning rates — and instantly see what changes.
 
 ## 🚀 Features
 
-* One hidden layer, ReLU activations
-* Output sigmoid + cross-entropy loss
-* Manual forward and backward propagation
-* Fully vectorized NumPy implementation
-* Decision boundary visualization
-* Clear, well-commented code
+- One hidden layer, ReLU activations
+- Output sigmoid + cross-entropy loss
+- Manual forward and backward propagation
+- Fully vectorized NumPy implementation
+- Decision boundary visualization
+- Clear, well-commented code
 
 ## 🎨 Example decision boundary
 
-*(You can insert a generated plot here, e.g., after training 2000 epochs)*
+_(You can insert a generated plot here, e.g., after training 2000 epochs)_
 ![Decision boundary example](./boundary_example.png)
 
 ## 🔧 Requirements
@@ -56,13 +56,6 @@ TinyNetLab/
 ```bash
 python tinynet.py
 ```
-
-## 🖱 Interactive moons explorer
-
-Run `streamlit run moons_streamlit.py` to launch the web app. Move the sliders for sample size and noise to see the moons dataset change.
-
-The old Matplotlib GUI (`python moons_gui.py`) is still available but `moons_streamlit.py` is recommended.
-
 
 ## 🌐 Streamlit app
 
