@@ -4,8 +4,9 @@ import tinynet
 import moons_streamlit
 
 APPS = {
-    "TinyNet Trainer": tinynet.main,
     "Moons Explorer": moons_streamlit.main,
+    "TinyNet Trainer": tinynet.main,
+    
 }
 
 def main() -> None:
