@@ -153,7 +153,9 @@ def decision_boundary_chart(X: np.ndarray, y: np.ndarray) -> alt.LayerChart:
 def main() -> None:
     """Streamlit UI for training and visualizing the tiny network."""
 
+    global n_hidden
     st.set_page_config(page_title="TinyNet Trainer")
+    n_hidden = st.slider("Hidden units", 1, 64, n_hidden, step=1)
     st.title(f"TinyNet {n_input}-{n_hidden}-{n_output}")
     st.markdown(
         "Train a tiny neural network on the moons dataset and view the decision boundary."
