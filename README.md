@@ -61,20 +61,25 @@ _(You can insert a generated plot here, e.g., after training 2000 epochs)_
 
 ## 🌱 Get started
 
+Launch the combined Streamlit interface and switch between apps:
+
+```bash
+streamlit run app.py
+```
+
+### Individual apps
+
+You can still run each demo separately:
+
 ```bash
 streamlit run tinynet.py
 ```
-
-## 🌐 Streamlit app
-
-Prefer a modern web interface? Launch the Streamlit version:
 
 ```bash
 streamlit run moons_streamlit.py
 ```
 
-This app presents the same controls in the browser and includes a checkbox to
-show how logistic regression performs on the dataset.
+The Moons explorer shows how logistic regression performs on the dataset.
 
 ## 📌 License
 
