@@ -131,17 +131,17 @@ def train(
 
         if progress and i % max(1, epochs // 100) == 0:
             progress.progress((i + 1) / epochs)
-            if boundary_placeholder:
-                probs, _ = forward(grid)
-                df_grid["prob"] = probs[:, 0]
-                boundary_placeholder.altair_chart(
-                    decision_boundary_chart(df_grid, df_data),
-                    use_container_width=True,
-                )
+            
             # Update the line chart with the current loss
             loss_chart_placeholder.add_rows({"loss": [loss]})
             print(f"Epoch {i + 1}/{epochs}, Loss: {loss:.4f}")
-
+    if boundary_placeholder:
+            probs, _ = forward(grid)
+            df_grid["prob"] = probs[:, 0]
+            boundary_placeholder.altair_chart(
+                decision_boundary_chart(df_grid, df_data),
+                use_container_width=True,
+            )
     return float(loss)
 
 # Visualization of decision boundary
