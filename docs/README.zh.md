@@ -66,6 +66,8 @@ pip install numpy matplotlib scikit-learn
 streamlit run app.py
 ```
 
+使用侧边栏的 **语言** 下拉框可以在英文和中文界面之间切换。
+
 ### 单独运行
 
 仍然可以分别启动每个示例：
