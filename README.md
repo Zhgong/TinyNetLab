@@ -68,6 +68,8 @@ Launch the combined Streamlit interface and switch between apps:
 streamlit run app.py
 ```
 
+Use the **Language** selector in the sidebar to switch between English and Chinese UI text.
+
 ### Individual apps
 
 You can still run each demo separately:

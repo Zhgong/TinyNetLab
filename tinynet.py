@@ -8,6 +8,7 @@ import altair as alt
 # Allow large decision boundary grids
 alt.data_transformers.disable_max_rows()
 import streamlit as st
+from i18n import t
 from sklearn.datasets import make_moons
 from streamlit.delta_generator import DeltaGenerator
 
@@ -172,7 +173,7 @@ def decision_boundary_chart(df_grid: pd.DataFrame, df_data: pd.DataFrame) -> alt
         )
     )
 
-    return (boundary + points).properties(width=600, height=400, title="Decision Boundary")
+    return (boundary + points).properties(width=600, height=400, title=t("decision_boundary"))
 
 
 def loss_chart(loss_history: list[float]) -> alt.Chart:
@@ -183,7 +184,7 @@ def loss_chart(loss_history: list[float]) -> alt.Chart:
         alt.Chart(df_loss)
         .mark_line()
         .encode(x="epoch", y="loss")
-        .properties(width=600, height=300, title="Loss over Time")
+        .properties(width=600, height=300, title=t("loss_over_time"))
     )
 
 
@@ -191,23 +192,21 @@ def main() -> None:
     """Streamlit UI for training and visualizing the tiny network."""
 
     global n_hidden
-    st.set_page_config(page_title="TinyNet Trainer")
+    st.set_page_config(page_title=t("tinynet_trainer"))
     title = st.empty()
     
-    n_hidden = st.slider("Hidden units", 1, 64, n_hidden, step=1)
+    n_hidden = st.slider(t("hidden_units"), 1, 64, n_hidden, step=1)
     with title.container():
-        st.title(f"TinyNet {n_input}-{n_hidden}-{n_output}")
+        st.title(t("tiny_title", n_input=n_input, n_hidden=n_hidden, n_output=n_output))
         
-    st.markdown(
-        "Train a tiny neural network on the moons dataset and view the decision boundary."
-    )
+    st.markdown(t("tinynet_description"))
 
-    samples = st.slider("Samples", 100, 1000, 800, step=50)
-    noise = st.slider("Noise", 0.0, 0.5, 0.2, step=0.01)
-    epochs = st.slider("Epochs", 5000, 200000, 50000, step=100)
-    lr = st.slider("Learning rate", 0.01, 1.0, 0.1, step=0.01)
+    samples = st.slider(t("samples"), 100, 1000, 800, step=50)
+    noise = st.slider(t("noise"), 0.0, 0.5, 0.2, step=0.01)
+    epochs = st.slider(t("epochs"), 5000, 200000, 50000, step=100)
+    lr = st.slider(t("learning_rate"), 0.01, 1.0, 0.1, step=0.01)
 
-    if st.button("Train"):
+    if st.button(t("train")):
         X, y = make_moons(n_samples=samples, noise=noise, random_state=42)
         y = y.reshape(-1, 1)
 
@@ -225,7 +224,7 @@ def main() -> None:
             loss_chart_placeholder=loss_chart_placeholder,
         )
 
-        st.write(f"Final loss: {loss:.4f}")
+        st.write(t("final_loss", loss=loss))
 
 
 if __name__ == "__main__":

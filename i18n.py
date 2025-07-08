@@ -1,0 +1,63 @@
+TRANSLATIONS = {
+    'en': {
+        'app_title': 'TinyNetLab',
+        'select_app': 'Select App',
+        'language': 'Language',
+        'moons_explorer': 'Moons Explorer',
+        'tinynet_trainer': 'TinyNet Trainer',
+        'moons_title': 'Moons Visualization',
+        'samples': 'Samples',
+        'noise': 'Noise',
+        'show_linear_model': 'Show linear model',
+        'moons_dataset': 'Moons Dataset',
+        'log_reg_loss': 'Logistic Regression loss: {loss:.4f}',
+        'linear_model_note': 'A linear model can only learn a straight decision boundary and therefore cannot correctly separate the curved moons.',
+        'moons_think': '**Think**\n\n- Why can\'t a single straight line separate the two "moons"?\n- If using only a linear model such as logistic regression, roughly how low will the loss get? Try verifying your guess.\n\nHint: The linear model can only draw a straight boundary, while the moons dataset is curved, so the loss can\'t get very low.',
+        'moons_explore_page_title': 'Moons Data Explorer',
+        'moons_distribution_title': 'Moons Data Distribution',
+        'tiny_title': 'TinyNet {n_input}-{n_hidden}-{n_output}',
+        'tinynet_description': 'Train a tiny neural network on the moons dataset and view the decision boundary.',
+        'hidden_units': 'Hidden units',
+        'epochs': 'Epochs',
+        'learning_rate': 'Learning rate',
+        'train': 'Train',
+        'final_loss': 'Final loss: {loss:.4f}',
+        'decision_boundary': 'Decision Boundary',
+        'loss_over_time': 'Loss over Time',
+    },
+    'zh': {
+        'app_title': 'TinyNetLab',
+        'select_app': '选择应用',
+        'language': '语言',
+        'moons_explorer': 'Moons 数据探索',
+        'tinynet_trainer': 'TinyNet 训练器',
+        'moons_title': 'Moons 数据可视化',
+        'samples': '样本数',
+        'noise': '噪声',
+        'show_linear_model': '显示线性模型效果',
+        'moons_dataset': 'Moons 数据集',
+        'log_reg_loss': 'Logistic Regression 损失: {loss:.4f}',
+        'linear_model_note': '线性模型只能学习直线决策边界，因此无法正确分开弯曲的 moons 数据。',
+        'moons_think': '**思考**\n\n- 画出来的两条“月牙”为什么一条直线分不开？\n- 如果只有线性模型（如 logistic regression），损失大概会降到哪？也可以试试验证你的猜想。\n\n提示：线性模型只能画出直线决策边界，而 moons 数据集呈现弯曲月牙形状，因此线性模型无法获得很低的损失。',
+        'moons_explore_page_title': 'Moons 数据探索',
+        'moons_distribution_title': 'Moons 数据分布',
+        'tiny_title': 'TinyNet {n_input}-{n_hidden}-{n_output}',
+        'tinynet_description': '训练一个小型神经网络并查看决策边界。',
+        'hidden_units': '隐藏单元数',
+        'epochs': '训练轮数',
+        'learning_rate': '学习率',
+        'train': '开始训练',
+        'final_loss': '最终损失: {loss:.4f}',
+        'decision_boundary': '决策边界',
+        'loss_over_time': '损失曲线',
+    }
+}
+
+import streamlit as st
+
+
+def t(key: str, **kwargs) -> str:
+    """Return the translated string based on current language."""
+    lang = st.session_state.get("lang", "en")
+    template = TRANSLATIONS.get(lang, TRANSLATIONS['en']).get(key, key)
+    return template.format(**kwargs)
