@@ -85,6 +85,18 @@ def update_params(grads, lr: float = 0.1):
     W2 -= lr * dW2
     b2 -= lr * db2
 
+# Helper to precompute the decision boundary grid
+def create_boundary_grid(X: np.ndarray):
+    """Return mesh grid and corresponding DataFrame for plotting."""
+    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
+    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
+    xx, yy = np.meshgrid(
+        np.linspace(x_min, x_max, 300), np.linspace(y_min, y_max, 300)
+    )
+    grid = np.c_[xx.ravel(), yy.ravel()]
+    df_grid = pd.DataFrame({"x1": grid[:, 0], "x2": grid[:, 1]})
+    return grid, df_grid
+
 # Training loop
 
 def train(
@@ -101,6 +113,10 @@ def train(
     loss: float = float("nan")
     loss_history: list[float] = []
 
+    # Precompute decision boundary grid once
+    grid, df_grid = create_boundary_grid(X)
+    df_data = pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "label": y[:, 0]})
+
     # When running in Streamlit, create a line chart for loss updates
     if loss_chart_placeholder is None:
         loss_chart_placeholder = st.line_chart()
@@ -116,8 +132,11 @@ def train(
         if progress and i % max(1, epochs // 100) == 0:
             progress.progress((i + 1) / epochs)
             if boundary_placeholder:
+                probs, _ = forward(grid)
+                df_grid["prob"] = probs[:, 0]
                 boundary_placeholder.altair_chart(
-                    decision_boundary_chart(X, y), use_container_width=True
+                    decision_boundary_chart(df_grid, df_data),
+                    use_container_width=True,
                 )
             # Update the line chart with the current loss
             loss_chart_placeholder.add_rows({"loss": [loss]})
@@ -127,20 +146,8 @@ def train(
 
 # Visualization of decision boundary
 
-def decision_boundary_chart(X: np.ndarray, y: np.ndarray) -> alt.LayerChart:
+def decision_boundary_chart(df_grid: pd.DataFrame, df_data: pd.DataFrame) -> alt.LayerChart:
     """Return an Altair chart visualizing the decision boundary."""
-
-    x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
-    y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
-
-    xx, yy = np.meshgrid(
-        np.linspace(x_min, x_max, 300), np.linspace(y_min, y_max, 300)
-    )
-    grid = np.c_[xx.ravel(), yy.ravel()]
-    probs, _ = forward(grid)
-
-    df_grid = pd.DataFrame({"x1": grid[:, 0], "x2": grid[:, 1], "prob": probs[:, 0]})
-    df_data = pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "label": y[:, 0]})
 
     boundary = (
         alt.Chart(df_grid)
