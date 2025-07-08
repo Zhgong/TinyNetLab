@@ -155,15 +155,19 @@ def main() -> None:
 
     global n_hidden
     st.set_page_config(page_title="TinyNet Trainer")
+    title = st.empty()
+    
     n_hidden = st.slider("Hidden units", 1, 64, n_hidden, step=1)
-    st.title(f"TinyNet {n_input}-{n_hidden}-{n_output}")
+    with title.container():
+        st.title(f"TinyNet {n_input}-{n_hidden}-{n_output}")
+        
     st.markdown(
         "Train a tiny neural network on the moons dataset and view the decision boundary."
     )
 
     samples = st.slider("Samples", 100, 1000, 800, step=50)
     noise = st.slider("Noise", 0.0, 0.5, 0.2, step=0.01)
-    epochs = st.slider("Epochs", 5000, 100000, 20000, step=100)
+    epochs = st.slider("Epochs", 5000, 200000, 50000, step=100)
     lr = st.slider("Learning rate", 0.01, 1.0, 0.1, step=0.01)
 
     if st.button("Train"):
