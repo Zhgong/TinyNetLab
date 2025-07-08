@@ -4,6 +4,9 @@ from typing import Optional
 import numpy as np
 import pandas as pd
 import altair as alt
+
+# Allow large decision boundary grids
+alt.data_transformers.disable_max_rows()
 import streamlit as st
 from sklearn.datasets import make_moons
 from streamlit.delta_generator import DeltaGenerator
