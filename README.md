@@ -29,6 +29,7 @@ You’ll see it all in action by training on a simple **2D moons dataset** (a cl
 - Manual forward and backward propagation
 - Fully vectorized NumPy implementation
 - Decision boundary visualization
+- Altair row limit disabled so the 300×300 boundary grid always renders
 - Clear, well-commented code
 
 ## Network Topology
