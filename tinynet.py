@@ -89,20 +89,33 @@ def train(
     y: np.ndarray,
     epochs: int = 2000,
     lr: float = 0.1,
-    progress: Optional[DeltaGenerator]  = None,
+    progress: Optional[DeltaGenerator] = None,
+    boundary_placeholder: Optional[DeltaGenerator] = None,
+    loss_placeholder: Optional[DeltaGenerator] = None,
 ) -> float:
-    """Train the network and optionally update a Streamlit progress bar."""
+    """Train the network and optionally update a Streamlit progress bar and charts."""
 
     loss: float = float("nan")
-    
+    loss_history: list[float] = []
+
     for i in range(epochs):
         A2, cache = forward(X)
         loss = compute_loss(A2, y)
         grads = backward(cache, y)
         update_params(grads, lr)
 
+        loss_history.append(loss)
+
         if progress and i % max(1, epochs // 100) == 0:
             progress.progress((i + 1) / epochs)
+            if boundary_placeholder:
+                boundary_placeholder.altair_chart(
+                    decision_boundary_chart(X, y), use_container_width=True
+                )
+            if loss_placeholder:
+                loss_placeholder.altair_chart(
+                    loss_chart(loss_history), use_container_width=True
+                )
             print(f"Epoch {i + 1}/{epochs}, Loss: {loss:.4f}")
 
     return float(loss)
@@ -150,6 +163,18 @@ def decision_boundary_chart(X: np.ndarray, y: np.ndarray) -> alt.LayerChart:
     return (boundary + points).properties(width=600, height=400, title="Decision Boundary")
 
 
+def loss_chart(loss_history: list[float]) -> alt.Chart:
+    """Return an Altair line chart of loss over epochs."""
+
+    df_loss = pd.DataFrame({"epoch": np.arange(1, len(loss_history) + 1), "loss": loss_history})
+    return (
+        alt.Chart(df_loss)
+        .mark_line()
+        .encode(x="epoch", y="loss")
+        .properties(width=600, height=300, title="Loss over Time")
+    )
+
+
 def main() -> None:
     """Streamlit UI for training and visualizing the tiny network."""
 
@@ -172,10 +197,19 @@ def main() -> None:
 
         init_params()
         progress = st.progress(0.0)
-        loss = train(X, y, epochs=epochs, lr=lr, progress=progress)
+        boundary_placeholder = st.empty()
+        loss_placeholder = st.empty()
+        loss = train(
+            X,
+            y,
+            epochs=epochs,
+            lr=lr,
+            progress=progress,
+            boundary_placeholder=boundary_placeholder,
+            loss_placeholder=loss_placeholder,
+        )
 
         st.write(f"Final loss: {loss:.4f}")
-        st.altair_chart(decision_boundary_chart(X, y), use_container_width=True)
 
 
 if __name__ == "__main__":
