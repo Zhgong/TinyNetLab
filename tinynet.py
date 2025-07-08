@@ -94,12 +94,16 @@ def train(
     lr: float = 0.1,
     progress: Optional[DeltaGenerator] = None,
     boundary_placeholder: Optional[DeltaGenerator] = None,
-    loss_placeholder: Optional[DeltaGenerator] = None,
+    loss_chart_placeholder: Optional[DeltaGenerator] = None,
 ) -> float:
     """Train the network and optionally update a Streamlit progress bar and charts."""
 
     loss: float = float("nan")
     loss_history: list[float] = []
+
+    # When running in Streamlit, create a line chart for loss updates
+    if loss_chart_placeholder is None:
+        loss_chart_placeholder = st.line_chart()
 
     for i in range(epochs):
         A2, cache = forward(X)
@@ -115,10 +119,8 @@ def train(
                 boundary_placeholder.altair_chart(
                     decision_boundary_chart(X, y), use_container_width=True
                 )
-            if loss_placeholder:
-                loss_placeholder.altair_chart(
-                    loss_chart(loss_history), use_container_width=True
-                )
+            # Update the line chart with the current loss
+            loss_chart_placeholder.add_rows({"loss": [loss]})
             print(f"Epoch {i + 1}/{epochs}, Loss: {loss:.4f}")
 
     return float(loss)
@@ -205,7 +207,7 @@ def main() -> None:
         init_params()
         progress = st.progress(0.0)
         boundary_placeholder = st.empty()
-        loss_placeholder = st.empty()
+        loss_chart_placeholder = st.line_chart()
         loss = train(
             X,
             y,
@@ -213,7 +215,7 @@ def main() -> None:
             lr=lr,
             progress=progress,
             boundary_placeholder=boundary_placeholder,
-            loss_placeholder=loss_placeholder,
+            loss_chart_placeholder=loss_chart_placeholder,
         )
 
         st.write(f"Final loss: {loss:.4f}")
