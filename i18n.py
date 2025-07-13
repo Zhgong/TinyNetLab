@@ -24,6 +24,13 @@ TRANSLATIONS = {
         'final_loss': 'Final loss: {loss:.4f}',
         'decision_boundary': 'Decision Boundary',
         'loss_over_time': 'Loss over Time',
+        'attention_demo': 'Attention Demo',
+        'select_sentence': 'Select sentence',
+        'dimension': 'Dimension',
+        'randomize_vectors': 'Randomize vectors',
+        'show_attention_matrix': 'Show attention matrix',
+        'attention_matrix': 'Attention Matrix',
+        'vector_transform': 'Vector transform',
     },
     'zh': {
         'app_title': 'TinyNetLab',
@@ -50,6 +57,13 @@ TRANSLATIONS = {
         'final_loss': '最终损失: {loss:.4f}',
         'decision_boundary': '决策边界',
         'loss_over_time': '损失曲线',
+        'attention_demo': 'Attention 演示',
+        'select_sentence': '选择句子',
+        'dimension': '维度',
+        'randomize_vectors': '随机初始化向量',
+        'show_attention_matrix': '显示注意力矩阵',
+        'attention_matrix': '注意力矩阵',
+        'vector_transform': '向量变化',
     }
 }
 

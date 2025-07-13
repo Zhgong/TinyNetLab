@@ -2,11 +2,13 @@
 import streamlit as st
 import tinynet
 import moons_streamlit
+import attention_demo
 from i18n import t
 
 APPS = {
     "moons": moons_streamlit.main,
     "tinynet": tinynet.main,
+    "attention": attention_demo.main,
 }
 
 def main() -> None:
@@ -24,7 +26,7 @@ def main() -> None:
     choice = st.sidebar.radio(
         t("select_app"),
         list(APPS.keys()),
-        format_func=lambda x: t("moons_explorer") if x == "moons" else t("tinynet_trainer"),
+        format_func=lambda x: t("moons_explorer") if x == "moons" else (t("tinynet_trainer") if x == "tinynet" else t("attention_demo")),
     )
     APPS[choice]()
 
