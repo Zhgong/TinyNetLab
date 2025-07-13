@@ -36,6 +36,10 @@ TRANSLATIONS = {
         'positional_encoding': 'Positional Encoding',
         'vector_chart_help_title': 'What does vector_chart show?',
         'vector_chart_help': 'The blue points are original vectors, the red points are vectors after attention, and gray lines connect them. This chart helps you see how attention moves each token\'s vector.',
+        'positional_encoding_help_title': 'What is positional encoding?',
+        'positional_encoding_help': 'Positional encoding injects each token\'s index into its vector. In this demo a sinusoidal vector based on position is added when enabled. The numbers show how much each position contributes.',
+        'attention_matrix_help_title': 'What is the attention matrix?',
+        'attention_matrix_help': 'The attention matrix displays weights from scaled dot-product attention. Each value tells how strongly a query attends to a key, and each row sums to one.',
     },
     'zh': {
         'app_title': 'TinyNetLab',
@@ -74,6 +78,10 @@ TRANSLATIONS = {
         'positional_encoding': '位置编码',
         'vector_chart_help_title': 'vector_chart 展示什么？',
         'vector_chart_help': '在 attention_demo.py 中，vector_chart 函数用于可视化注意力机制前后的 2D 向量变化。蓝点表示原始向量，红点表示注意力后的向量，灰线连接同一 token 的起点和终点，可帮助你观察注意力如何移动每个向量。',
+        'positional_encoding_help_title': '什么是位置编码？',
+        'positional_encoding_help': '位置编码用于在向量中加入每个 token 的位置信息。勾选“使用位置编码”后，本示例会按索引给每个 token 加上正弦波向量，数值展示了不同位置带来的影响。',
+        'attention_matrix_help_title': '什么是注意力矩阵？',
+        'attention_matrix_help': '注意力矩阵展示了缩放点积注意力得到的权重。每个数值表示 query token 对 key token 的关注程度，每行权重之和为 1。',
     }
 }
 

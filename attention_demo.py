@@ -130,6 +130,8 @@ def main() -> None:
 
     use_pe = st.checkbox(t("use_positional_encoding"), value=False)
     show_pe = st.checkbox(t("show_positional_encoding"), value=False)
+    with st.expander(t("positional_encoding_help_title")):
+        st.markdown(t("positional_encoding_help"))
     if use_pe or show_pe:
         pe = sinusoidal_positional_encoding(len(tokens), dim)
         if show_pe:
@@ -148,6 +150,8 @@ def main() -> None:
 
     if st.checkbox(t("show_attention_matrix"), value=True):
         st.altair_chart(heatmap_chart(tokens, scores, weights), use_container_width=True)
+        with st.expander(t("attention_matrix_help_title")):
+            st.markdown(t("attention_matrix_help"))
 
     st.altair_chart(vector_chart(tokens, X, output), use_container_width=True)
 
