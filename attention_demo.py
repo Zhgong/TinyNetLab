@@ -21,6 +21,27 @@ SENTENCES = [
     "Tiny models can be fun",
 ]
 
+
+def sinusoidal_positional_encoding(length: int, dim: int) -> np.ndarray:
+    """Return standard sinusoidal positional encoding."""
+    position = np.arange(length)[:, None]
+    div_term = np.exp(np.arange(0, dim, 2) * -(np.log(10000.0) / dim))
+    pe = np.zeros((length, dim))
+    pe[:, 0::2] = np.sin(position * div_term)
+    pe[:, 1::2] = np.cos(position * div_term)
+    return pe
+
+
+def positional_encoding_chart(pe: np.ndarray) -> alt.LayerChart:
+    """Visualize positional encoding values as a heatmap."""
+    df = pd.DataFrame(pe)
+    df["pos"] = np.arange(pe.shape[0])
+    df = df.melt(id_vars="pos", var_name="dim", value_name="value")
+    base = alt.Chart(df).encode(x="dim", y=alt.Y("pos:O", sort=None))
+    heat = base.mark_rect().encode(color=alt.Color("value", scale=alt.Scale(scheme="viridis")))
+    text = base.mark_text().encode(text=alt.Text("value", format=".2f"))
+    return (heat + text).properties(width=400, height=200, title=t("positional_encoding"))
+
 def init_state(dim: int, tokens: list[str]) -> None:
     """Initialize vectors in session state."""
     if "vectors" not in st.session_state or st.session_state.get("dim") != dim or st.session_state.get("tokens") != tokens:
@@ -106,6 +127,15 @@ def main() -> None:
         st.session_state["tokens"] = tokens
 
     X = get_vectors(dim, tokens)
+
+    use_pe = st.checkbox(t("use_positional_encoding"), value=False)
+    show_pe = st.checkbox(t("show_positional_encoding"), value=False)
+    if use_pe or show_pe:
+        pe = sinusoidal_positional_encoding(len(tokens), dim)
+        if show_pe:
+            st.altair_chart(positional_encoding_chart(pe), use_container_width=True)
+        if use_pe:
+            X = X + pe
 
     W_Q = np.eye(dim)
     W_K = np.eye(dim)

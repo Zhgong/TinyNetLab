@@ -31,6 +31,9 @@ TRANSLATIONS = {
         'show_attention_matrix': 'Show attention matrix',
         'attention_matrix': 'Attention Matrix',
         'vector_transform': 'Vector transform',
+        'use_positional_encoding': 'Use positional encoding',
+        'show_positional_encoding': 'Show positional encoding',
+        'positional_encoding': 'Positional Encoding',
     },
     'zh': {
         'app_title': 'TinyNetLab',
@@ -64,6 +67,9 @@ TRANSLATIONS = {
         'show_attention_matrix': '显示注意力矩阵',
         'attention_matrix': '注意力矩阵',
         'vector_transform': '向量变化',
+        'use_positional_encoding': '使用位置编码',
+        'show_positional_encoding': '显示位置编码',
+        'positional_encoding': '位置编码',
     }
 }
 
