@@ -60,7 +60,7 @@ pip install numpy matplotlib scikit-learn
 
 ## 🌱 快速开始
 
-运行整合后的界面，可在侧边栏切换两种演示：
+运行整合后的界面，可在侧边栏切换三种演示（Moons Explorer、TinyNet Trainer、Attention Demo）：
 
 ```bash
 streamlit run app.py
@@ -79,6 +79,12 @@ streamlit run tinynet.py
 ```bash
 streamlit run moons_streamlit.py
 ```
+
+```bash
+streamlit run attention_demo.py
+```
+
+Attention Demo 用交互式方式演示缩放点积注意力机制。
 
 Moons 数据演示页面提供了 Logistic Regression 的比较效果。
 

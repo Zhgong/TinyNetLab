@@ -62,7 +62,7 @@ _(You can insert a generated plot here, e.g., after training 2000 epochs)_
 
 ## 🌱 Get started
 
-Launch the combined Streamlit interface and switch between apps:
+Launch the combined Streamlit interface and switch between apps (Moons Explorer, TinyNet Trainer and Attention Demo):
 
 ```bash
 streamlit run app.py
@@ -81,6 +81,12 @@ streamlit run tinynet.py
 ```bash
 streamlit run moons_streamlit.py
 ```
+
+```bash
+streamlit run attention_demo.py
+```
+
+The Attention demo visualizes a tiny scaled dot-product attention mechanism.
 
 The Moons explorer shows how logistic regression performs on the dataset.
 
