@@ -34,6 +34,8 @@ TRANSLATIONS = {
         'use_positional_encoding': 'Use positional encoding',
         'show_positional_encoding': 'Show positional encoding',
         'positional_encoding': 'Positional Encoding',
+        'vector_chart_help_title': 'What does vector_chart show?',
+        'vector_chart_help': 'The blue points are original vectors, the red points are vectors after attention, and gray lines connect them. This chart helps you see how attention moves each token\'s vector.',
     },
     'zh': {
         'app_title': 'TinyNetLab',
@@ -70,6 +72,8 @@ TRANSLATIONS = {
         'use_positional_encoding': '使用位置编码',
         'show_positional_encoding': '显示位置编码',
         'positional_encoding': '位置编码',
+        'vector_chart_help_title': 'vector_chart 展示什么？',
+        'vector_chart_help': '在 attention_demo.py 中，vector_chart 函数用于可视化注意力机制前后的 2D 向量变化。蓝点表示原始向量，红点表示注意力后的向量，灰线连接同一 token 的起点和终点，可帮助你观察注意力如何移动每个向量。',
     }
 }
 
