@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import altair as alt
 import streamlit as st
+from typing import Union
 from math import sqrt
 
 from i18n import t
@@ -52,7 +53,7 @@ def attention(q: np.ndarray, k: np.ndarray, v: np.ndarray) -> tuple[np.ndarray, 
     return scores, weights, output
 
 
-def heatmap_chart(tokens: list[str], scores: np.ndarray, weights: np.ndarray) -> alt.Chart:
+def heatmap_chart(tokens: list[str], scores: np.ndarray, weights: np.ndarray) -> alt.LayerChart:
     """Return an interactive heatmap for attention weights."""
     n = len(tokens)
     df = pd.DataFrame(
@@ -72,7 +73,7 @@ def heatmap_chart(tokens: list[str], scores: np.ndarray, weights: np.ndarray) ->
     return (heat + text + tooltip).properties(width=300, height=300, title=t("attention_matrix"))
 
 
-def vector_chart(tokens: list[str], x: np.ndarray, out: np.ndarray) -> alt.Chart:
+def vector_chart(tokens: list[str], x: np.ndarray, out: np.ndarray) -> Union[alt.LayerChart,alt.Chart]:
     """Show 2D vectors before and after attention."""
     if x.shape[1] < 2:
         return alt.Chart(pd.DataFrame()).mark_point()
