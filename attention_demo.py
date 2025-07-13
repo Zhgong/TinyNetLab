@@ -151,6 +151,9 @@ def main() -> None:
 
     st.altair_chart(vector_chart(tokens, X, output), use_container_width=True)
 
+    with st.expander(t("vector_chart_help_title")):
+        st.markdown(t("vector_chart_help"))
+
 
 if __name__ == "__main__":
     main()
