@@ -39,7 +39,7 @@ TRANSLATIONS = {
         'positional_encoding_help_title': 'What is positional encoding?',
         'positional_encoding_help': 'Positional encoding injects each token\'s index into its vector. When enabled, a sinusoidal vector based on position is added. Rows correspond to token positions and columns correspond to encoding dimensions. With length=4 and dimension=2, row 1 column 0 \u2248 0.84 from the sine term and column 1 \u2248 0.54 from the cosine term.',
         'attention_matrix_help_title': 'What is the attention matrix?',
-        'attention_matrix_help': 'The attention matrix displays weights from scaled dot-product attention. Each value tells how strongly a query attends to a key, and each row sums to one.',
+        'attention_matrix_help': 'The attention matrix displays weights from scaled dot-product attention. Each value tells how strongly a query attends to a key, and each row sums to one. Rows are queries and columns are keys. For example, with the default sentence "I love machine learning" (dimension 2, seed 0), the weight for query "love" attending to key "learning" is about 0.38, meaning around 38% of "love"\'s output is drawn from "learning".',
     },
     'zh': {
         'app_title': 'TinyNetLab',
@@ -81,7 +81,7 @@ TRANSLATIONS = {
         'positional_encoding_help_title': '什么是位置编码？',
         'positional_encoding_help': '位置编码用于在向量中加入每个 token 的位置信息。勾选“使用位置编码”后，本示例会按索引加上正弦波向量。行对应 token 位置，列对应编码维度。默认 length=4、dimension=2 时，第 1 行第 0 列约为 0.84（正弦项），第 1 列约为 0.54（余弦项）。',
         'attention_matrix_help_title': '什么是注意力矩阵？',
-        'attention_matrix_help': '注意力矩阵展示了缩放点积注意力得到的权重。每个数值表示 query token 对 key token 的关注程度，每行权重之和为 1。',
+        'attention_matrix_help': '注意力矩阵展示了缩放点积注意力得到的权重。每个数值表示 query token 对 key token 的关注程度，每行权重之和为 1。行代表 query，列代表 key。以默认句子 "I love machine learning"（维度 2，seed 0）为例，query "love" 对 key "learning" 的权重约为 0.38，意味着 "love" 的输出大约 38% 来自 "learning"。',
     }
 }
 
