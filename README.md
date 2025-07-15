@@ -86,7 +86,9 @@ streamlit run moons_streamlit.py
 streamlit run attention_demo.py
 ```
 
-The Attention demo visualizes a tiny scaled dot-product attention mechanism.
+The Attention demo visualizes a tiny scaled dot-product attention mechanism. See
+[this attention example](docs/attention_example.md) for how positional encoding
+is computed and what the default weight matrix looks like.
 
 The Moons explorer shows how logistic regression performs on the dataset.
 

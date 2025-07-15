@@ -84,7 +84,8 @@ streamlit run moons_streamlit.py
 streamlit run attention_demo.py
 ```
 
-Attention Demo 用交互式方式演示缩放点积注意力机制。
+Attention Demo 用交互式方式演示缩放点积注意力机制。更多关于位置编码和默认
+权重矩阵的说明见 [此示例](attention_example.zh.md)。
 
 Moons 数据演示页面提供了 Logistic Regression 的比较效果。
 
